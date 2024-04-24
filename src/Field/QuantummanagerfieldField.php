@@ -74,7 +74,7 @@ class QuantummanagerfieldField extends QuantumuploadField
 			$this->__set('dropAreaHidden', $this->getAttribute('dropAreaHidden', true));
 			$this->__set('copy', $this->getAttribute('copy', true));
 			$this->__set('path', $this->getAttribute('path', $fieldparams['path']));
-			$this->__set('scope', $this->getAttribute('path', $fieldparams['scope']));
+			$this->__set('scope', $this->getAttribute('scope', $fieldparams['scope']));
 
 			if ($this->copy)
 			{
