@@ -34,7 +34,7 @@ class QuantummanagerfieldField extends QuantumuploadField
 
 	protected function getLayoutData()
 	{
-		$layout     = new FileLayout('quantummanagerfield', JPATH_ROOT . '/layouts/plugins/fields/quantummanagerfield/fields');
+		$layout     = new FileLayout('plugins.fields.quantummanagerfield.fields.quantummanagerfield');
 		$parentData = parent::getLayoutData();
 
 		if (isset($this->dropAreaHidden) && (int) $this->dropAreaHidden)
