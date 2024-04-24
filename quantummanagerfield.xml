@@ -1,35 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="plugin" group="fields" method="upgrade">
-	<name>PLG_QUANTUMMANAGERFIELD</name>
-	<creationDate>13.10.2019</creationDate>
-	<author>Cymbal</author>
-	<authorEmail>delo@delo-design.ru</authorEmail>
-	<authorUrl>https://delo-design.ru</authorUrl>
-	<copyright>Delo-Design</copyright>
-	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
-	<version>2.0.0</version>
-	<description>PLG_QUANTUMMANAGERFIELD_XML_DESCRIPTION</description>
-	<namespace path="src">Joomla\Plugin\Fields\QuantumManagerField</namespace>
+    <name>PLG_QUANTUMMANAGERFIELD</name>
+    <creationDate>13.10.2019</creationDate>
+    <author>Cymbal</author>
+    <authorEmail>delo@delo-design.ru</authorEmail>
+    <authorUrl>https://delo-design.ru</authorUrl>
+    <copyright>Delo-Design</copyright>
+    <license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+    <version>2.0.0</version>
+    <description>PLG_QUANTUMMANAGERFIELD_XML_DESCRIPTION</description>
+    <namespace path="src">Joomla\Plugin\Fields\QuantumManagerField</namespace>
+    <scriptfile>script.php</scriptfile>
 
-	<languages folder="language">
-		<language tag="en-GB">en-GB/en-GB.plg_system_quantummanagerfield.ini</language>
-		<language tag="en-GB">en-GB/en-GB.plg_system_quantummanagerfield.sys.ini</language>
-		<language tag="ru-RU">ru-RU/ru-RU.plg_system_quantummanagerfield.ini</language>
-		<language tag="ru-RU">ru-RU/ru-RU.plg_system_quantummanagerfield.sys.ini</language>
-	</languages>
+    <languages folder="language">
+        <language tag="en-GB">en-GB/en-GB.plg_system_quantummanagerfield.ini</language>
+        <language tag="en-GB">en-GB/en-GB.plg_system_quantummanagerfield.sys.ini</language>
+        <language tag="ru-RU">ru-RU/ru-RU.plg_system_quantummanagerfield.ini</language>
+        <language tag="ru-RU">ru-RU/ru-RU.plg_system_quantummanagerfield.sys.ini</language>
+    </languages>
 
-	<media folder="media" destination="plg_fields_quantummanagerfield">
-		<folder>js</folder>
-	</media>
+    <media folder="media" destination="plg_fields_quantummanagerfield">
+        <folder>js</folder>
+    </media>
 
-	<layouts destination="plugins/fields/quantummanagerfield" folder="layouts">
-		<folder>fields</folder>
-	</layouts>
+    <layouts destination="plugins/fields/quantummanagerfield" folder="layouts">
+        <folder>fields</folder>
+    </layouts>
 
-	<files>
-		<folder plugin="quantummanagerfield">src</folder>
-		<folder>services</folder>
-		<folder>params</folder>
-	</files>
+    <files>
+        <folder plugin="quantummanagerfield">src</folder>
+        <folder>services</folder>
+        <folder>params</folder>
+    </files>
 
 </extension>
