@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields name="fieldparams">
+        <fieldset name="fieldparams">
+            <field
+                    name="scope"
+                    type="text"
+                    label="Область"
+                    default="images"
+                    required="true"
+            />
+
+            <field
+                    name="path"
+                    type="text"
+                    label="Путь"
+                    default="root"
+                    required="true"
+            />
+        </fieldset>
+    </fields>
+</form>
