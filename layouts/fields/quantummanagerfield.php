@@ -1,43 +1,93 @@
-<?php
-/**
- * @package    quantummanager
- * @author     Dmitry Tsymbal <cymbal@delo-design.ru>
- * @copyright  Copyright © 2019 Delo Design & NorrNext. All rights reserved.
- * @license    GNU General Public License version 3 or later; see license.txt
- * @link       https://www.norrnext.com
- */
+<?php defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
-use Joomla\CMS\Layout\FileLayout;
+use Joomla\CMS\Language\Text;
+use Joomla\Component\QuantumManager\Administrator\Helper\QuantummanagerLibsHelper;
 
-defined('_JEXEC') or die;
 extract($displayData);
+
+QuantummanagerLibsHelper::theme();
+$modalHTML  = '';
+$modal_id = 'imageModalQuantumuploadimage_' . random_int(111111, 999999);
+
+HTMLHelper::_('stylesheet', 'com_quantummanager/joomla.css', [
+	'version'  => filemtime(__FILE__),
+	'relative' => true
+]);
+
+try
+{
+	$modalHTML = HTMLHelper::_(
+		'bootstrap.renderModal',
+		$modal_id,
+		[
+			'url'         => 'index.php?option=com_quantummanager&tmpl=component&layout=modal&namespace=quantumuploadimage',
+			'title'       => Text::_('JLIB_FORM_CHANGE_IMAGE'),
+			'closeButton' => true,
+			'height'      => '100%',
+			'width'       => '100%',
+			'modalWidth'  => '80',
+			'bodyHeight'  => '80',
+			'footer'      => '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">' . Text::_('JCANCEL') . '</button>',
+		]
+	);
+}
+catch (Exception $e)
+{
+}
+
+HTMLHelper::_('stylesheet', 'plg_fields_quantummanagerfield/field.css', [
+	'version'  => filemtime(__FILE__),
+	'relative' => true
+]);
 
 HTMLHelper::_('script', 'plg_fields_quantummanagerfield/field.js', [
 	'version'  => filemtime(__FILE__),
 	'relative' => true
 ]);
+
+$app   = Factory::getApplication();
+$img   = !empty($displayData['value']) ? '/' . $displayData['value'] : '';
+$value = $displayData['value'];
+
+$app->getSession()->set('quantummanageraddscripts', json_encode([
+	'plg_fields_quantummanagerfield/quantummodal.js'
+]), 'quantumuploadimage');
+
+$quantumOptions = [
+	'option'     => 'com_quantummanager',
+	'tmpl'       => 'component',
+	'layout'     => 'modal',
+	'namespace'  => 'quantumuploadimage'
+];
+
 ?>
 
-<div class="quantumcombineselectfile">
-
-	<div class="preview-file" data-value="<?php echo $displayData['value'] ?>">
-
-		<div class="uk-flex" data-uk-form-custom>
-			<div data-uk-lightbox="toggle: .uk-button">
-				<div class="uk-button uk-button-default preview" href=""><i data-uk-icon="icon: image"></i></div>
-			</div>
-			<input class="input-file uk-input <?php echo $displayData['class'] ?>" type="text" name="<?php echo $displayData['name'] ?>" id="<?php echo $displayData['id'] ?>" value="<?php echo $displayData['value'] ?>" style="width: 300px" />
-			<div class="change-button uk-button uk-button-primary">Изменить</div>
-		</div>
-
-	</div>
-
-	<div style="display: none">
-		<?php
-		$template = new FileLayout('quantumcombine', JPATH_ROOT . '/administrator/components/com_quantummanager/layouts');
-		echo $template->render($displayData);
-		?>
-	</div>
-
+<div class="quantumuploadimage-field-toolbar <?php if (isset($displayData['dropAreaHidden']) && (int) $displayData['dropAreaHidden']) : ?>quantumuploadimage-preview-hidden<?php endif; ?>">
+    <div class="quantumuploadimage-preview <?php if (!empty($img)) : ?>quantumuploadimage-preview-active<?php endif; ?>">
+		<?php if (!empty($img)) : ?>
+            <img src="<?php echo $img ?>"/>
+		<?php endif; ?>
+    </div>
+    <div class="quantumuploadimage-actions">
+        <input type="text" name="<?php echo $displayData['name'] ?>" id="<?php echo $displayData['id'] ?>"
+               value="<?php echo $value ?>"
+               class="quantumuploadimage-input form-control">
+        <div class="quantumuploadimage-group-buttons">
+			<?php if (isset($displayData['dropAreaHidden']) && (int) $displayData['dropAreaHidden']) : ?>
+                <button class="qm-btn quantumuploadimage-upload-start"><?php echo Text::_('COM_QUANTUMMANAGER_ACTION_UPLOADING') ?></button><?php endif; ?>
+            <button class="qm-btn qm-btn-primary quantumuploadimage-change"
+                    aria-hidden="true"
+                    data-source-href="/administrator/index.php?<?php echo http_build_query($quantumOptions) ?>"
+                    data-modal-id="<?php echo $modal_id; ?>"
+            ><?php echo Text::_('COM_QUANTUMMANAGER_ACTION_SELECT') ?></button>
+			<?php if ((int) $displayData['copy']) : ?>
+                <button class="qm-btn quantumuploadimage-copy only-icon" aria-hidden="true"><span
+                            class="icon-copy"></span></button><?php endif; ?>
+            <button class="qm-btn qm-btn-danger quantumuploadimage-delete only-icon" aria-hidden="true"><span
+                        class="icon-remove"></span></button>
+        </div>
+    </div>
+	<?php echo $modalHTML; ?>
 </div>
