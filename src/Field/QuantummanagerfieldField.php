@@ -57,7 +57,7 @@ class QuantummanagerfieldField extends FormField
 		$fieldObject = new QuantumcombineField;
 		$fieldObject->setup(new SimpleXMLElement('<field name="' . $data['name'] . '" value="' . $data['value'] . '" type="quantumcombine" ' . implode(' ', $dataAttributes) . ' />'), '');
 		$fieldObject->value = $data['value'];
-		$fieldObject->addCustomLayoutsPath([JPATH_ROOT . '/layouts/fields/quantummanagerfield']);
+		$fieldObject->addCustomLayoutsPath([JPATH_ROOT . '/layouts/fields/quantummanagerfield/fields']);
 
 		$html = $fieldObject->getInput();
 

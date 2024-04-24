@@ -23,7 +23,7 @@
 	</media>
 
 	<layouts destination="plugins/fields/quantummanagerfield" folder="layouts">
-		<file>quantummanagerfield.php</file>
+		<folder>fields</folder>
 	</layouts>
 
 	<files>
