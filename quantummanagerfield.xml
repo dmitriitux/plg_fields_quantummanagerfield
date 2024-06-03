@@ -19,11 +19,6 @@
         <language tag="ru-RU">ru-RU/ru-RU.plg_fields_quantummanagerfield.sys.ini</language>
     </languages>
 
-    <media folder="media" destination="plg_fields_quantummanagerfield">
-        <folder>css</folder>
-        <folder>js</folder>
-    </media>
-
     <layouts destination="plugins/fields/quantummanagerfield" folder="layouts">
         <folder>fields</folder>
     </layouts>
