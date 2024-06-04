@@ -37,12 +37,12 @@ catch (Exception $e)
 {
 }
 
-HTMLHelper::_('stylesheet', 'plg_fields_quantummanagerfield/field.css', [
+HTMLHelper::_('stylesheet', 'lib_fields/quantumuploadimage/field.css', [
 	'version'  => filemtime(__FILE__),
 	'relative' => true
 ]);
 
-HTMLHelper::_('script', 'plg_fields_quantummanagerfield/field.js', [
+HTMLHelper::_('script', 'lib_fields/quantumuploadimage/field.js', [
 	'version'  => filemtime(__FILE__),
 	'relative' => true
 ]);
@@ -52,7 +52,7 @@ $img   = !empty($displayData['value']) ? '/' . $displayData['value'] : '';
 $value = $displayData['value'];
 
 $app->getSession()->set('quantummanageraddscripts', json_encode([
-	'plg_fields_quantummanagerfield/quantummodal.js'
+	'lib_fields/quantumuploadimage/quantummodal.js'
 ]), 'quantumuploadimage');
 
 $quantumOptions = [
